@@ -1,0 +1,26 @@
+# Environments & Dependencies
+backend/venv/
+venv/
+**/node_modules/
+**/dist/
+
+# Environment Variables & Secrets
+**/.env
+**/.env.*
+!.env.example
+
+# Python Cache & Databases
+**/__pycache__/
+*.pyc
+*.pyo
+*.sqlite3
+
+# Media & Static Uploads
+backend/media/
+backend/staticfiles/
+flask_backend/instance/
+flask_backend/media/
+
+# Test Reports
+test-results/
+playwright-report/

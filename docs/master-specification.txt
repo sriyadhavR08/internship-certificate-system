@@ -1,0 +1,2260 @@
+# MASTER PROMPT — DIGITAL INTERNSHIP CERTIFICATE SYSTEM
+
+Act as a senior full-stack developer, Django developer, React developer, database architect, UI/UX designer and QA engineer.
+
+Build a complete professional **Digital Internship Certificate Management System** from scratch.
+
+I am attaching:
+
+1. Our official company logo
+2. Our current internship certificate/document sample
+
+Analyze both attachments before implementing the UI and certificate.
+
+Use the real logo throughout the application.
+
+Use the supplied certificate as the main reference for the generated certificate.
+
+IMPORTANT:
+
+Do not just explain how to develop the application.
+
+Actually create the folders, install dependencies, create frontend and backend files, configure the database, implement the features, test the application and provide the exact commands required to run it.
+
+Continue until the project is locally runnable.
+
+If any command or code fails, diagnose the problem, fix it and continue.
+
+---
+
+# 1. PROJECT PURPOSE
+
+Our organization provides internships lasting between 1 and 3 months.
+
+Currently, after a student completes an internship, we manually print certificate content on an existing certificate/bond sheet.
+
+We want to digitize this process.
+
+The new system should allow:
+
+Student Registration
+→ Login
+→ Internship Details
+→ Internship Completion
+→ Admin Approval
+→ Certificate Preview
+→ Certificate Generation
+→ QR Code Generation
+→ Digital PDF Certificate
+→ Student Download
+→ Public Certificate Verification
+
+The system must remain small, simple, secure and professional.
+
+---
+
+# 2. TECHNOLOGY STACK
+
+Use the following stack.
+
+## Frontend
+
+React.js
+Vite
+Bootstrap 5
+Bootstrap Icons
+React Router
+Axios
+html5-qrcode
+
+## Backend
+
+Python
+Django
+Django REST Framework
+
+Use:
+
+django
+djangorestframework
+djangorestframework-simplejwt
+django-cors-headers
+mysqlclient or PyMySQL
+Pillow
+ReportLab
+qrcode
+python-dotenv
+
+Use additional lightweight Python libraries only when genuinely necessary.
+
+## Database
+
+MySQL 8+
+
+## Authentication
+
+JWT authentication using:
+
+djangorestframework-simplejwt
+
+## PDF Generation
+
+ReportLab
+
+## QR Generation
+
+Python qrcode library
+
+## QR Scanning
+
+html5-qrcode in React
+
+---
+
+# 3. LOCAL DEVELOPMENT URLS
+
+Frontend:
+
+http://localhost:5173
+
+Backend:
+
+http://127.0.0.1:8000
+
+Django Admin:
+
+http://127.0.0.1:8000/admin/
+
+MySQL:
+
+localhost:3306
+
+---
+
+# 4. WINDOWS DEVELOPMENT
+
+The application will initially be developed on Windows.
+
+Use Windows PowerShell-compatible commands.
+
+When creating Python virtual environment use:
+
+python -m venv venv
+
+PowerShell activation:
+
+.\venv\Scripts\Activate.ps1
+
+If PowerShell execution policy blocks activation, explain the safe development workaround.
+
+Do not assume Linux commands when providing local Windows setup instructions.
+
+---
+
+# 5. CREATE PROJECT FROM SCRATCH
+
+Start by creating:
+
+internship-certificate-system/
+
+Inside it create:
+
+internship-certificate-system/
+│
+├── frontend/
+├── backend/
+├── docs/
+├── assets/
+├── README.md
+└── .gitignore
+
+Do not ask me to manually create every file.
+
+Create the required files yourself.
+
+---
+
+# 6. BACKEND INITIALIZATION
+
+Inside backend create a Python virtual environment.
+
+Install the required dependencies.
+
+Create a requirements.txt file.
+
+Create Django project:
+
+certificate_system
+
+Create Django applications where appropriate, such as:
+
+accounts
+internships
+certificates
+
+Suggested structure:
+
+backend/
+│
+├── certificate_system/
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+│
+├── accounts/
+├── internships/
+├── certificates/
+├── media/
+├── static/
+├── templates/
+├── requirements.txt
+├── manage.py
+├── .env
+└── .env.example
+
+Use a clean Django architecture.
+
+---
+
+# 7. FRONTEND INITIALIZATION
+
+Create React frontend using Vite.
+
+Use JavaScript unless TypeScript provides a clear benefit.
+
+Install:
+
+react-router-dom
+axios
+bootstrap
+bootstrap-icons
+html5-qrcode
+
+Suggested structure:
+
+frontend/src/
+│
+├── assets/
+├── components/
+├── layouts/
+├── pages/
+│   ├── public/
+│   ├── student/
+│   └── admin/
+├── services/
+├── context/
+├── hooks/
+├── utils/
+├── routes/
+├── App.jsx
+└── main.jsx
+
+Do not create one huge React component.
+
+Use reusable components.
+
+---
+
+# 8. COMPANY LOGO
+
+I am attaching our official logo with this prompt.
+
+Analyze the provided logo.
+
+Copy/use it appropriately inside:
+
+frontend/src/assets/
+
+Use it in:
+
+Public Navbar
+Login
+Registration
+Student Dashboard
+Admin Dashboard
+Certificate where appropriate
+Favicon where technically suitable
+
+Preserve the original aspect ratio.
+
+Do NOT generate or substitute a random logo when the real logo is attached.
+
+Derive a restrained UI color palette from the company's branding where appropriate.
+
+---
+
+# 9. CERTIFICATE REFERENCE
+
+I am also attaching our current certificate/document.
+
+Analyze:
+
+Page dimensions
+Margins
+Font sizes
+Text positioning
+Heading
+Paragraph spacing
+Date position
+Location position
+Managing Director section
+Signature area
+Logo placement if present
+Background/border if present
+
+The generated PDF should closely resemble the supplied certificate.
+
+Do not unnecessarily redesign the organization's existing certificate.
+
+---
+
+# 10. USER TYPES
+
+System has:
+
+STUDENT
+ADMIN
+
+Also provide public certificate verification without login.
+
+Do not provide public admin registration.
+
+---
+
+# 11. PUBLIC HOME PAGE
+
+Route:
+
+/
+
+Create a clean professional landing page.
+
+Navbar:
+
+[Company Logo]
+
+Home
+Register
+Login
+Verify Certificate
+
+Hero:
+
+Digital Internship Certificate Portal
+
+Description:
+
+Register your internship, access your digital certificate after completion and securely verify certificates using QR technology.
+
+Buttons:
+
+Register Now
+Verify Certificate
+
+Keep the page simple and corporate.
+
+---
+
+# 12. STUDENT REGISTRATION
+
+Route:
+
+/register
+
+Create a professional registration form.
+
+## Personal Details
+
+Full Name *
+Gender *
+Email *
+Mobile Number *
+
+Gender:
+
+Male
+Female
+
+## Academic Details
+
+College Name *
+Department *
+Course / Degree *
+Register Number *
+
+## Internship Details
+
+Project Name *
+Internship Start Date *
+Internship End Date *
+
+## Account Details
+
+Password *
+Confirm Password *
+
+Include:
+
+Password visibility
+Required validation
+Email validation
+Mobile validation
+Password confirmation
+Duplicate email check
+Duplicate register number check
+Date validation
+
+End date must be later than start date.
+
+Internship duration must conform to the organization's 1–3 month internship policy.
+
+Do not allow student to enter:
+
+Certificate ID
+Certificate Issue Date
+Certificate Status
+Internship Completion Status
+QR token
+
+These are system/admin controlled.
+
+---
+
+# 13. LOGIN
+
+Route:
+
+/login
+
+Fields:
+
+Email
+Password
+
+Use JWT authentication.
+
+Use Django REST Framework SimpleJWT.
+
+After successful authentication:
+
+STUDENT → /student/dashboard
+
+ADMIN → /admin/dashboard
+
+Store passwords securely using Django's password hashing.
+
+Never store plain-text passwords.
+
+---
+
+# 14. CUSTOM DJANGO USER
+
+Create a proper custom Django user model from the beginning.
+
+Use email as the login identifier.
+
+Important fields:
+
+id
+full_name
+email
+role
+is_active
+is_staff
+created_at
+updated_at
+
+Roles:
+
+STUDENT
+ADMIN
+
+Configure AUTH_USER_MODEL correctly before initial migrations.
+
+---
+
+# 15. STUDENT PROFILE MODEL
+
+Create StudentProfile.
+
+Suggested fields:
+
+user
+gender
+mobile_number
+college_name
+department
+course
+register_number
+created_at
+updated_at
+
+Use proper relationships.
+
+Register number should be unique where appropriate.
+
+---
+
+# 16. INTERNSHIP MODEL
+
+Create Internship.
+
+Fields:
+
+student
+project_name
+start_date
+end_date
+status
+completed_at
+created_at
+updated_at
+
+Status choices:
+
+REGISTERED
+IN_PROGRESS
+COMPLETED
+CERTIFICATE_ISSUED
+
+---
+
+# 17. CERTIFICATE MODEL
+
+Create Certificate.
+
+Fields:
+
+internship
+certificate_id
+verification_token
+issue_date
+pdf_file
+status
+generated_at
+revoked_at
+created_at
+updated_at
+
+Certificate statuses:
+
+VALID
+REVOKED
+
+certificate_id must be unique.
+
+verification_token must be unique.
+
+---
+
+# 18. INTERNSHIP WORKFLOW
+
+Strictly implement:
+
+REGISTERED
+↓
+IN_PROGRESS
+↓
+COMPLETED
+↓
+CERTIFICATE_ISSUED
+
+Registration must NEVER automatically generate a certificate.
+
+Reaching the internship end date must NOT automatically generate a certificate.
+
+Admin approval is mandatory.
+
+Only admin can mark:
+
+IN_PROGRESS
+COMPLETED
+
+Only admin can generate the certificate.
+
+---
+
+# 19. STUDENT DASHBOARD
+
+Route:
+
+/student/dashboard
+
+Create a clean responsive dashboard.
+
+Header:
+
+Company Logo
+Student Name
+Logout
+
+Display:
+
+Welcome, [Student Name]
+
+## Internship Information
+
+Student Name
+College
+Department
+Course
+Register Number
+Project Name
+Start Date
+End Date
+Duration
+Status
+
+Before certificate generation display:
+
+"Your internship is currently in progress. Your certificate will become available after successful completion and approval."
+
+Certificate download button disabled.
+
+After certificate generation display:
+
+"Congratulations! Your internship certificate is ready."
+
+Show:
+
+Certificate ID
+Issue Date
+Certificate Status
+
+Buttons:
+
+View Certificate
+Download Certificate
+Verify Certificate
+
+Do not use charts.
+
+---
+
+# 20. ADMIN DASHBOARD
+
+Route:
+
+/admin/dashboard
+
+Create a professional sidebar.
+
+Sidebar:
+
+Company Logo
+
+Dashboard
+Students
+Internships
+Certificates
+Verify Certificate
+Logout
+
+Dashboard cards:
+
+Total Students
+Active Internships
+Completed Internships
+Certificates Issued
+
+Do not add graphs/charts.
+
+Below summary cards show useful recent activity.
+
+---
+
+# 21. STUDENT MANAGEMENT
+
+Route:
+
+/admin/students
+
+Create table:
+
+Student Name
+Register Number
+College
+Project
+Start Date
+End Date
+Internship Status
+Certificate Status
+Actions
+
+Provide search:
+
+Name
+Register Number
+Email
+
+Filters:
+
+Project
+Status
+Start Date
+End Date
+
+Actions:
+
+View
+Edit
+Mark In Progress
+Mark Completed
+Preview Certificate
+Generate Certificate
+
+---
+
+# 22. ADMIN STUDENT DETAIL
+
+Admin must be able to view and correct:
+
+Full Name
+Gender
+Email
+Mobile
+College
+Department
+Course
+Register Number
+Project Name
+Start Date
+End Date
+
+Changes must be validated.
+
+This correction feature is important because a student may make a spelling mistake during registration.
+
+---
+
+# 23. CERTIFICATE DYNAMIC DATA
+
+The following fields must come automatically from registration/database:
+
+Student Name
+Gender
+Project Name
+Start Date
+End Date
+
+Do not hardcode these fields.
+
+Use placeholders internally:
+
+{{TITLE}}
+{{STUDENT_NAME}}
+{{PROJECT_NAME}}
+{{START_DATE}}
+{{END_DATE}}
+{{ISSUE_DATE}}
+
+{{PRONOUN_SUBJECT}}
+{{PRONOUN_OBJECT}}
+{{PRONOUN_POSSESSIVE}}
+{{PRONOUN_POSSESSIVE_CAPITAL}}
+
+{{CERTIFICATE_ID}}
+{{QR_CODE}}
+
+---
+
+# 24. CERTIFICATE CONTENT
+
+Use this content while visually following the attached certificate:
+
+TO WHOMSOEVER IT MAY CONCERN
+
+This is to certify that {{TITLE}} {{STUDENT_NAME}} has completed {{PRONOUN_POSSESSIVE}} internship in our organization from {{START_DATE}} to {{END_DATE}}.
+
+Throughout the period, {{TITLE}} {{STUDENT_NAME}} displayed exceptional dedication and a strong sense of responsibility, making {{PRONOUN_OBJECT}} an invaluable candidate of our project “{{PROJECT_NAME}}”.
+
+We have no doubt that {{TITLE}} {{STUDENT_NAME}} will continue to excel in {{PRONOUN_POSSESSIVE}} future endeavours. {{PRONOUN_POSSESSIVE_CAPITAL}} strong dedication towards continuous growth and improvement will undoubtedly lead to great success.
+
+We wish {{PRONOUN_OBJECT}} all the best in {{PRONOUN_POSSESSIVE}} future career, and we are confident that {{PRONOUN_SUBJECT}} will continue to make a positive impact in any role {{PRONOUN_SUBJECT}} undertakes.
+
+{{ISSUE_DATE}}
+
+Coimbatore
+
+
+Mrs. Lincy Karthipan
+Managing Director
+
+---
+
+# 25. GENDER-BASED PRONOUNS
+
+Automatically determine pronouns.
+
+FEMALE:
+
+TITLE = Ms.
+PRONOUN_SUBJECT = she
+PRONOUN_OBJECT = her
+PRONOUN_POSSESSIVE = her
+PRONOUN_POSSESSIVE_CAPITAL = Her
+
+MALE:
+
+TITLE = Mr.
+PRONOUN_SUBJECT = he
+PRONOUN_OBJECT = him
+PRONOUN_POSSESSIVE = his
+PRONOUN_POSSESSIVE_CAPITAL = His
+
+Student/admin should not manually enter pronouns.
+
+Do not infer marital status from gender.
+
+Use Ms. for female candidates unless the admin later explicitly changes the certificate policy.
+
+---
+
+# 26. EXAMPLE
+
+Registration:
+
+Name:
+Kaviya
+
+Gender:
+Female
+
+Project:
+Zentime
+
+Start Date:
+01/09/2026
+
+End Date:
+30/09/2026
+
+Generated text must automatically become:
+
+"Ms. Kaviya has completed her internship in our organization from 01/09/2026 to 30/09/2026."
+
+and:
+
+"making her an invaluable candidate of our project 'Zentime'."
+
+and:
+
+"We wish her all the best in her future career, and we are confident that she will continue..."
+
+No Mohana Priya, Virtue Hire or old certificate dates may remain hardcoded.
+
+---
+
+# 27. CERTIFICATE PREVIEW
+
+Before final generation:
+
+Admin clicks:
+
+Preview Certificate
+
+Generate a browser preview using the actual student information.
+
+Show:
+
+Student Name
+Correct Title
+Correct Pronouns
+Project
+Start Date
+End Date
+Issue Date
+Certificate layout
+QR placeholder
+
+Admin options:
+
+Edit Student Details
+
+Generate Final Certificate
+
+Do not generate the final certificate until admin confirms.
+
+---
+
+# 28. CERTIFICATE ISSUE DATE
+
+Do NOT ask the student for issue date.
+
+Set issue date when the admin generates the final certificate.
+
+Use the server date unless admin business requirements later require manual issue-date control.
+
+Display:
+
+DD/MM/YYYY
+
+---
+
+# 29. CERTIFICATE ID
+
+Automatically create unique certificate IDs.
+
+Format:
+
+INT-YYYY-XXXXX
+
+Examples:
+
+INT-2026-00001
+INT-2026-00002
+INT-2026-00003
+
+Implement backend/database uniqueness.
+
+Handle concurrency safely enough that duplicate certificate IDs are not created.
+
+---
+
+# 30. QR VERIFICATION TOKEN
+
+Generate a secure random token using Python's cryptographically secure utilities such as:
+
+secrets.token_urlsafe()
+
+Never use predictable sequential database IDs as verification tokens.
+
+---
+
+# 31. QR CODE CONTENT
+
+QR must contain a verification URL.
+
+Development example:
+
+http://localhost:5173/verify/{verification_token}
+
+Production URL must be configurable using an environment variable.
+
+Do not hardcode localhost permanently into generated certificates.
+
+Example environment variable:
+
+FRONTEND_BASE_URL=http://localhost:5173
+
+Generate:
+
+{FRONTEND_BASE_URL}/verify/{token}
+
+---
+
+# 32. QR CODE ON CERTIFICATE
+
+Use Python qrcode.
+
+Generate QR as an image.
+
+Insert it into the PDF certificate using ReportLab.
+
+Position it neatly without disturbing the existing certificate layout.
+
+Include visible text near the QR such as:
+
+Scan to Verify
+
+Also show Certificate ID visibly.
+
+---
+
+# 33. PUBLIC VERIFICATION PAGE
+
+Routes:
+
+/verify
+
+/verify/:token
+
+No login required.
+
+Verification page should support:
+
+Scan QR
+
+OR
+
+Enter Certificate ID
+
+Example field:
+
+Certificate ID
+
+[ INT-2026-00001 ]
+
+[ Verify Certificate ]
+
+---
+
+# 34. VALID CERTIFICATE RESULT
+
+Display a professional verification card.
+
+Use:
+
+✓ Certificate Verified
+
+Show only appropriate public information:
+
+Student Name
+Project Name
+Internship Start Date
+Internship End Date
+Certificate ID
+Issue Date
+Status: VALID
+
+Do NOT publicly display:
+
+Email
+Phone
+Password
+College register credentials beyond what is necessary
+JWT
+Internal database ID
+Verification token
+
+---
+
+# 35. INVALID CERTIFICATE
+
+Display:
+
+Certificate Not Found
+
+"Please check the Certificate ID or scan a valid certificate QR code."
+
+Do not expose Django/database errors.
+
+---
+
+# 36. REVOKED CERTIFICATE
+
+Admin must be able to revoke a certificate.
+
+If revoked:
+
+Display:
+
+Certificate Revoked
+
+Student Name
+Certificate ID
+Status: REVOKED
+
+Do not display a green verified state.
+
+---
+
+# 37. QR SCANNER
+
+Use html5-qrcode in React.
+
+Create a professional scanner component.
+
+Buttons:
+
+Open Camera
+Stop Camera
+
+Handle:
+
+Camera permission denied
+No camera
+Invalid QR
+Unknown certificate
+Network failure
+
+When valid QR is scanned:
+
+Extract/validate the expected verification URL/token.
+
+Navigate to:
+
+/verify/:token
+
+Do not execute arbitrary QR URLs.
+
+---
+
+# 38. PDF GENERATION
+
+Use ReportLab.
+
+Generate a real PDF file.
+
+Do NOT generate an image and rename it PDF.
+
+Use the attached certificate as the visual/layout reference.
+
+Requirements:
+
+Correct page size
+Correct margins
+Professional typography
+Proper line wrapping
+Correct paragraph spacing
+Dynamic name
+Dynamic gender wording
+Dynamic project
+Dynamic dates
+Issue date
+Certificate ID
+QR code
+Managing Director section
+
+Store generated PDF using Django's FileField/media storage abstraction.
+
+For local development:
+
+backend/media/certificates/
+
+Create the directory automatically as needed.
+
+---
+
+# 39. PHYSICAL BOND-SHEET SUPPORT
+
+Important:
+
+We currently have pre-printed physical bond sheets.
+
+Therefore separate:
+
+Certificate Data
+
+from
+
+Certificate Layout
+
+from
+
+Certificate Generation
+
+Design the code so later we can support two modes:
+
+1. DIGITAL_CERTIFICATE
+2. BOND_SHEET_PRINT
+
+DIGITAL_CERTIFICATE may contain complete certificate design.
+
+BOND_SHEET_PRINT should be capable of printing only required text/data at exact positions over a pre-printed physical bond sheet.
+
+Do not tightly couple business logic to the visual PDF layout.
+
+Create a certificate service architecture that can support this future mode.
+
+---
+
+# 40. DJANGO REST API
+
+Implement APIs similar to:
+
+POST /api/auth/register/
+
+POST /api/auth/login/
+
+POST /api/auth/token/refresh/
+
+GET /api/student/profile/
+
+GET /api/student/internship/
+
+GET /api/student/certificate/
+
+GET /api/admin/students/
+
+GET /api/admin/students/{id}/
+
+PUT /api/admin/students/{id}/
+
+PATCH /api/admin/internships/{id}/status/
+
+GET /api/admin/certificates/preview/{internship_id}/
+
+POST /api/admin/certificates/generate/{internship_id}/
+
+PATCH /api/admin/certificates/{id}/revoke/
+
+GET /api/certificates/{id}/download/
+
+GET /api/public/verify/token/{token}/
+
+GET /api/public/verify/id/{certificate_id}/
+
+Adjust routes where Django REST Framework conventions provide a cleaner design.
+
+---
+
+# 41. API RESPONSE FORMAT
+
+Use consistent JSON responses where practical.
+
+Success example:
+
+{
+    "success": true,
+    "message": "Certificate generated successfully",
+    "data": {}
+}
+
+Error example:
+
+{
+    "success": false,
+    "message": "Certificate has already been generated"
+}
+
+---
+
+# 42. DJANGO PERMISSIONS
+
+Create custom DRF permissions if required.
+
+Public:
+
+Registration
+Login
+Certificate verification
+
+Student:
+
+Own profile
+Own internship
+Own certificate
+Own certificate download
+
+Admin:
+
+All student management
+Internship status changes
+Certificate generation
+Certificate revocation
+
+Students must never access another student's private records by changing an API ID.
+
+Enforce ownership on the backend.
+
+---
+
+# 43. DJANGO ADMIN
+
+Configure Django Admin.
+
+Admin should be able to inspect:
+
+Users
+Student Profiles
+Internships
+Certificates
+
+Add useful:
+
+list_display
+search_fields
+list_filter
+
+Do not rely solely on Django Admin for the application's main business workflow.
+
+The React Admin Dashboard is still required.
+
+---
+
+# 44. SECURITY
+
+Implement:
+
+Django password hashing
+JWT authentication
+DRF permissions
+CORS configuration
+Environment variables
+Secure verification tokens
+Serializer validation
+Backend ownership checks
+Safe file handling
+
+Never:
+
+Store passwords in plain text
+Expose SECRET_KEY
+Commit real DB passwords
+Put DB credentials in React
+Trust frontend role checks alone
+Expose verification tokens unnecessarily
+
+---
+
+# 45. ENVIRONMENT CONFIGURATION
+
+Create:
+
+backend/.env.example
+
+Example:
+
+DJANGO_SECRET_KEY=change-me
+DJANGO_DEBUG=True
+
+DB_NAME=internship_certificate_db
+DB_USER=root
+DB_PASSWORD=
+DB_HOST=localhost
+DB_PORT=3306
+
+FRONTEND_BASE_URL=http://localhost:5173
+
+Create frontend:
+
+frontend/.env.example
+
+Example:
+
+VITE_API_BASE_URL=http://127.0.0.1:8000/api
+
+Do not put real production secrets in example files.
+
+---
+
+# 46. MYSQL DATABASE
+
+Database name:
+
+internship_certificate_db
+
+Configure Django MySQL connection.
+
+Use Django migrations as the source of truth for schema creation.
+
+Also provide clear instructions to create the empty MySQL database initially.
+
+Example:
+
+CREATE DATABASE internship_certificate_db
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+Then run:
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+---
+
+# 47. INITIAL ADMIN
+
+Do not hardcode an admin password in source code.
+
+Provide instructions to create admin using:
+
+python manage.py createsuperuser
+
+Ensure the custom user model supports this correctly.
+
+If the React admin dashboard requires role=ADMIN, make sure superuser/admin creation assigns or supports the correct role securely.
+
+---
+
+# 48. UI STYLE
+
+Build a professional company portal.
+
+Style:
+
+Modern
+Minimal
+Corporate
+Clean
+Premium but simple
+
+Use the supplied logo colors as inspiration.
+
+Use:
+
+Light backgrounds
+White cards
+Subtle borders
+Small shadows
+Professional typography
+Consistent spacing
+Rounded corners
+Clear buttons
+Professional icons
+Status badges
+
+Avoid:
+
+Neon UI
+Huge gradients
+Over-animation
+Glass effects everywhere
+Unnecessary illustrations
+Charts
+Overcrowded pages
+
+---
+
+# 49. PUBLIC NAVBAR
+
+Desktop:
+
+Logo | Home | Register | Login | Verify Certificate
+
+Mobile:
+
+Logo + Hamburger
+
+Navbar must be responsive.
+
+---
+
+# 50. LOGIN UI
+
+Use a centered professional authentication card.
+
+Logo at top.
+
+Heading:
+
+Welcome Back
+
+Text:
+
+Sign in to access your internship certificate portal.
+
+Email
+
+Password
+
+Login button
+
+Register link
+
+Include:
+
+Password visibility toggle
+Loading state
+Validation
+Error feedback
+
+---
+
+# 51. REGISTRATION UI
+
+Do not create one visually overwhelming form.
+
+Use clear sections:
+
+Personal Information
+
+Academic Information
+
+Internship Information
+
+Account Security
+
+On desktop use sensible two-column layout.
+
+On mobile use one column.
+
+At bottom:
+
+Create Account
+
+Already registered? Login
+
+---
+
+# 52. STUDENT DASHBOARD UI
+
+Use top navbar.
+
+Main content:
+
+Welcome card
+
+Internship status card
+
+Internship details card
+
+Certificate card
+
+Keep important information immediately visible.
+
+No sidebar is necessary for students unless it materially improves the final UI.
+
+---
+
+# 53. ADMIN UI
+
+Admin can use sidebar.
+
+Desktop:
+
+Fixed/collapsible sidebar
+
+Mobile:
+
+Offcanvas sidebar
+
+Topbar:
+
+Page Title
+Admin profile
+Logout
+
+Main content:
+
+Summary cards
+Recent students
+Recent certificates
+
+---
+
+# 54. UI STATUS COLORS
+
+Use accessible semantic styles consistently.
+
+Registered → neutral/info style
+
+In Progress → info/primary style
+
+Completed → success style
+
+Certificate Issued → success style
+
+Revoked → danger style
+
+Do not depend only on color; include text labels.
+
+---
+
+# 55. TOASTS
+
+Use a lightweight professional notification method.
+
+Show messages such as:
+
+Registration successful
+
+Login successful
+
+Student updated
+
+Internship marked completed
+
+Certificate generated successfully
+
+Certificate revoked
+
+Download started
+
+Avoid JavaScript alert() for normal actions.
+
+---
+
+# 56. LOADING STATES
+
+Add loading indicators to:
+
+Registration
+Login
+Dashboard
+Admin tables
+Certificate preview
+Certificate generation
+Certificate verification
+Certificate download
+
+Disable buttons during important submissions to prevent duplicates.
+
+---
+
+# 57. ERROR HANDLING
+
+Backend:
+
+Create a consistent exception-handling strategy.
+
+Frontend:
+
+Convert backend errors into understandable messages.
+
+Examples:
+
+Email already registered.
+
+Register number already exists.
+
+Invalid email or password.
+
+You are not authorized to perform this action.
+
+Internship must be completed before generating a certificate.
+
+Certificate already generated.
+
+Certificate not found.
+
+Unable to access camera.
+
+---
+
+# 58. CERTIFICATE GENERATION VALIDATION
+
+Before generation backend must verify:
+
+Internship exists
+
+Student exists
+
+Internship status == COMPLETED
+
+Student name exists
+
+Gender exists
+
+Project name exists
+
+Start date exists
+
+End date exists
+
+Certificate has not already been generated
+
+If any requirement fails:
+
+Do not generate certificate.
+
+Return a clear error.
+
+---
+
+# 59. TRANSACTION SAFETY
+
+Certificate generation should be handled carefully.
+
+Use Django database transaction.atomic() where appropriate.
+
+Prevent duplicate certificate generation caused by double-clicks or repeated requests.
+
+Certificate ID and verification token must have database unique constraints.
+
+---
+
+# 60. CERTIFICATE PREVIEW VS FINAL
+
+Preview must NOT create a final certificate database record.
+
+Preview should use the current student/internship information.
+
+Only:
+
+Generate Final Certificate
+
+should:
+
+Create Certificate ID
+Create secure token
+Generate QR
+Generate PDF
+Save certificate record
+Change internship status to CERTIFICATE_ISSUED
+
+---
+
+# 61. PDF DOWNLOAD SECURITY
+
+A logged-in student can download only their own certificate.
+
+Admin can download certificates.
+
+Public verification should NOT automatically expose private downloadable files unless explicitly designed to do so.
+
+---
+
+# 62. ROUTE PROTECTION
+
+React:
+
+Create:
+
+PublicRoute where appropriate
+StudentRoute
+AdminRoute
+
+But remember:
+
+Frontend route protection is only for UX.
+
+Backend DRF permissions are the real security boundary.
+
+---
+
+# 63. JWT HANDLING
+
+Implement Axios API client.
+
+Attach access token to protected requests.
+
+Implement token refresh cleanly using SimpleJWT refresh endpoint.
+
+Handle expired sessions.
+
+On unrecoverable authentication failure:
+
+Clear authentication state
+Redirect to login
+
+Avoid infinite refresh loops.
+
+---
+
+# 64. CORS
+
+Allow frontend development URL:
+
+http://localhost:5173
+
+Configure django-cors-headers correctly.
+
+Do not use allow-all CORS as the final production configuration.
+
+---
+
+# 65. MEDIA CONFIGURATION
+
+Configure:
+
+MEDIA_URL
+MEDIA_ROOT
+
+Local generated certificates:
+
+media/certificates/
+
+Generated QR temporary assets should be handled cleanly.
+
+Avoid leaving unnecessary temporary files.
+
+---
+
+# 66. TESTING
+
+Backend tests should cover at minimum:
+
+Student registration
+
+Duplicate email rejection
+
+Duplicate register number rejection
+
+Login
+
+Unauthorized admin endpoint rejection
+
+Student ownership protection
+
+Admin status change
+
+Certificate cannot generate before completion
+
+Certificate generation
+
+Duplicate certificate prevention
+
+Female pronouns
+
+Male pronouns
+
+Certificate verification by token
+
+Certificate verification by ID
+
+Revoked certificate
+
+Frontend should be manually verified for:
+
+Registration
+Login
+Responsive layout
+Admin workflow
+Certificate preview
+Certificate download
+QR scanner
+Verification
+
+---
+
+# 67. SAMPLE DEVELOPMENT DATA
+
+Create development-only sample data if helpful.
+
+Example student:
+
+Name:
+Kaviya
+
+Gender:
+Female
+
+Project:
+Zentime
+
+Start:
+01/09/2026
+
+End:
+30/09/2026
+
+Do not let sample data leak into production certificate generation.
+
+---
+
+# 68. README
+
+Create a detailed README.md.
+
+Include:
+
+Project overview
+
+Features
+
+Technology stack
+
+Project structure
+
+Prerequisites
+
+Python installation requirement
+
+Node.js installation requirement
+
+MySQL requirement
+
+Backend setup
+
+Frontend setup
+
+Environment variables
+
+Database creation
+
+Migrations
+
+Superuser creation
+
+How to run backend
+
+How to run frontend
+
+How certificate generation works
+
+How QR verification works
+
+Troubleshooting
+
+---
+
+# 69. EXACT LOCAL SETUP FLOW
+
+After creating the project, make sure this workflow works.
+
+## Terminal 1 — MySQL
+
+Ensure MySQL is running.
+
+Create:
+
+internship_certificate_db
+
+## Terminal 2 — Backend
+
+From project root:
+
+cd backend
+
+Create virtual environment if not already created:
+
+python -m venv venv
+
+Activate PowerShell environment:
+
+.\venv\Scripts\Activate.ps1
+
+Install:
+
+pip install -r requirements.txt
+
+Configure .env.
+
+Run:
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+Create admin:
+
+python manage.py createsuperuser
+
+Start:
+
+python manage.py runserver
+
+Backend should become available at:
+
+http://127.0.0.1:8000
+
+## Terminal 3 — Frontend
+
+From project root:
+
+cd frontend
+
+Install:
+
+npm install
+
+Run:
+
+npm run dev
+
+Frontend should become available at:
+
+http://localhost:5173
+
+---
+
+# 70. FINAL VERIFICATION
+
+Before declaring the project complete, verify the full workflow:
+
+1. Open website.
+
+2. Logo displays correctly.
+
+3. Register Kaviya.
+
+4. Login as Kaviya.
+
+5. Dashboard shows internship details.
+
+6. Certificate is unavailable.
+
+7. Logout.
+
+8. Login as Admin.
+
+9. Find Kaviya.
+
+10. Review/edit details.
+
+11. Mark internship In Progress if required.
+
+12. Mark internship Completed.
+
+13. Click Preview Certificate.
+
+14. Verify certificate displays:
+
+Ms. Kaviya
+
+her internship
+
+Project Zentime
+
+Correct dates
+
+she/her wording
+
+15. Click Generate Final Certificate.
+
+16. Unique Certificate ID is created.
+
+17. QR code is created.
+
+18. PDF is generated.
+
+19. Internship status changes to Certificate Issued.
+
+20. Logout Admin.
+
+21. Login as Kaviya.
+
+22. Certificate is visible.
+
+23. Download PDF.
+
+24. Open PDF and verify layout.
+
+25. Scan QR.
+
+26. Verification page opens.
+
+27. Certificate shows Verified.
+
+28. Enter Certificate ID manually.
+
+29. Same certificate verifies.
+
+30. Admin revokes certificate.
+
+31. Scan again.
+
+32. Verification page shows Revoked.
+
+Do not mark the application complete until this workflow is functional.
+
+---
+
+# 71. UI ITERATION REQUIREMENT
+
+After functionality is complete, perform a second UI review.
+
+Check:
+
+Spacing
+Typography
+Alignment
+Logo size
+Mobile responsiveness
+Form consistency
+Button consistency
+Table responsiveness
+Status badges
+Empty states
+Loading states
+Error states
+
+Fix visually inconsistent sections.
+
+Do not change working business logic merely for cosmetic reasons.
+
+---
+
+# 72. CERTIFICATE ITERATION
+
+Compare generated PDF with the certificate/document I attached.
+
+Adjust:
+
+Coordinates
+Margins
+Font sizes
+Line spacing
+Paragraph width
+Date position
+Coimbatore position
+Managing Director position
+QR placement
+Certificate ID placement
+
+The goal is to make the generated certificate professionally match our existing certificate format.
+
+Do not guess if the attached reference provides the necessary information.
+
+---
+
+# 73. IMPORTANT DEVELOPMENT BEHAVIOUR
+
+Do not stop and tell me:
+
+"Now create this file."
+
+Create the file yourself.
+
+Do not repeatedly ask me to copy code manually when you have filesystem access.
+
+Do not only produce tutorials.
+
+You are responsible for implementing the project in the current workspace.
+
+You may explain important decisions briefly while working, but prioritize actual implementation.
+
+When an error occurs:
+
+Read the error
+Identify the root cause
+Modify the necessary file/configuration
+Retry
+
+Do not abandon the task at the first error.
+
+---
+
+# 74. DO NOT CHANGE CORE REQUIREMENTS WITHOUT PERMISSION
+
+Do not change:
+
+React frontend
+
+Python Django backend
+
+Django REST Framework
+
+MySQL database
+
+JWT authentication
+
+ReportLab certificate generation
+
+QR verification architecture
+
+without a strong technical reason.
+
+If a change is absolutely necessary, explain the reason before making a major architectural change.
+
+---
+
+# 75. DEVELOPMENT ORDER
+
+Follow this order.
+
+PHASE 1
+Analyze attached logo and certificate.
+
+PHASE 2
+Create project directories.
+
+PHASE 3
+Initialize Django backend.
+
+PHASE 4
+Configure MySQL.
+
+PHASE 5
+Create custom user model and models.
+
+PHASE 6
+Create migrations.
+
+PHASE 7
+Implement authentication APIs.
+
+PHASE 8
+Implement internship APIs.
+
+PHASE 9
+Implement admin APIs.
+
+PHASE 10
+Initialize React frontend.
+
+PHASE 11
+Create public UI.
+
+PHASE 12
+Create registration/login.
+
+PHASE 13
+Create student dashboard.
+
+PHASE 14
+Create admin dashboard.
+
+PHASE 15
+Create certificate template service.
+
+PHASE 16
+Implement gender/pronoun replacement.
+
+PHASE 17
+Implement certificate preview.
+
+PHASE 18
+Implement Certificate ID generation.
+
+PHASE 19
+Implement QR generation.
+
+PHASE 20
+Implement ReportLab PDF generation.
+
+PHASE 21
+Implement certificate download.
+
+PHASE 22
+Implement public verification.
+
+PHASE 23
+Implement QR scanner.
+
+PHASE 24
+Implement certificate revocation.
+
+PHASE 25
+Run backend tests.
+
+PHASE 26
+Run frontend build/lint checks.
+
+PHASE 27
+Run complete end-to-end workflow.
+
+PHASE 28
+Improve UI.
+
+PHASE 29
+Compare generated certificate with supplied reference and adjust layout.
+
+PHASE 30
+Complete README and final run instructions.
+
+---
+
+# 76. FINAL RESPONSE AFTER DEVELOPMENT
+
+When implementation is complete, give me a concise completion report containing:
+
+Project folder location
+
+Frontend technology
+
+Backend technology
+
+Database
+
+Implemented features
+
+Database setup command
+
+Backend run commands
+
+Frontend run commands
+
+Admin creation command
+
+Frontend URL
+
+Backend URL
+
+Django Admin URL
+
+Any environment variables I still need to configure
+
+Any remaining limitations
+
+Do not claim something works unless you actually implemented it or clearly label it as pending.
+
+---
+
+# START NOW
+
+First:
+
+1. Inspect the attached company logo.
+2. Inspect the attached certificate/document.
+3. Create the project root folder.
+4. Show the architecture you are implementing.
+5. Start backend and frontend setup.
+6. Continue through all phases until the complete application is locally runnable.
+
+Do not stop after planning.
+Proceed with implementation.
