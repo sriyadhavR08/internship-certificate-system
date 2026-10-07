@@ -64,6 +64,7 @@ if __name__ == "__main__":
         # Ensure database tables exist (safe if they already exist in MySQL)
         db.create_all()
 
-    port = int(os.environ.get("PORT", 5000))
+    import sys
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("PORT", 5000))
     print(f"🚀 Wingroo Flask Backend starting on http://127.0.0.1:{port}")
     app.run(host="0.0.0.0", port=port, debug=True)
